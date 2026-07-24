@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #F4F0E8;
+  --color-ink: #221F1C;
+  --color-ink-soft: #5A564E;
+  --color-line: #C9C2B4;
+  --color-orbis: #3E5C63;
+  --color-orbis-dark: #283D42;
+  --color-orbis-tint: #E4EBEC;
+  --color-naomi: #6E2439;
+  --color-naomi-dark: #4E1729;
+  --color-naomi-tint: #F3E4E8;
+  
+  --font-serif: "Fraunces", serif;
+  --font-sans: "Inter", sans-serif;
+  --font-script: "Parisienne", cursive;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.font-serif-italic {
+  font-style: italic;
+  font-family: 'Fraunces', serif;
+}
+
+@keyframes kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+
+.animate-kenburns {
+  animation: kenburns 18s ease-in-out infinite alternate;
+}
+
+.bg-gradient-radial-orbis {
+  background: radial-gradient(circle, var(--color-orbis-tint), var(--color-orbis-dark));
+}
+
+.bg-gradient-radial-naomi {
+  background: radial-gradient(circle, var(--color-naomi-tint), var(--color-naomi-dark));
+}
+
+.bg-diagonal-texture {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 255, 255, 0.03) 10px,
+    rgba(255, 255, 255, 0.03) 20px
+  );
+}

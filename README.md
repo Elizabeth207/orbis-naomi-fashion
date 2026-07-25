@@ -1,6 +1,6 @@
 # ORBIS II & Novias Naomi — Sitio web
 
-Sitio institucional y catálogo visual para dos tiendas de moda en Pichanaki, Junín, Perú.
+Sitio institucional y catálogo visual para dos tiendas de moda 
 
 **Stack:** React 19 · TypeScript · Vite · Tailwind CSS v4 · React Router · Framer Motion
 

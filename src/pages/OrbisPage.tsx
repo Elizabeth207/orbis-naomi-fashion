@@ -15,13 +15,13 @@ export default function OrbisPage() {
         brand="orbis"
         eyebrow="Moda casual"
         title="Orbis II"
-        description="Venta de ropa casual para damas, caballeros y niños. Prendas del día a día con estilo urbano y buena calidad, para toda ocasión."
+        description="Venta de ropa casual para damas y caballeros. Prendas del día a día con estilo urbano y buena calidad, para toda ocasión."
         imageSrc="/images/orbis/hero.jpg"
       />
       <BrandStory
         title="Sobre Orbis II"
         paragraphs={[
-          "Orbis II nace para vestir el día a día de Pichanaki con ventas de prendas casuales de calidad, pensadas para damas, caballeros y niños.",
+          "Orbis II nace para vestir el día a día de Pichanaki con ventas de prendas casuales de calidad, pensadas para damas y caballeros.",
           "Aquí encontrarás desde básicos de uso diario hasta piezas de abrigo para el clima de la sierra, siempre con buena caída y precios justos."
         ]}
       />

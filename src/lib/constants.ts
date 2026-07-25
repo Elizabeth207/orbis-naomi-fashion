@@ -1,5 +1,5 @@
 export const BRAND = {
-  orbis: { name: "Orbis II", tagline: "Venta de ropa casual para damas, caballeros y niños." },
+  orbis: { name: "Orbis II", tagline: "Venta de ropa casual para damas y caballeros." },
   naomi: { name: "Novias Naomi", tagline: "Venta y alquiler de vestidos de novia, gala y fiesta para toda ocasión, desde los 8 años." },
 };
 

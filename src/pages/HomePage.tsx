@@ -23,7 +23,7 @@ export default function HomePage() {
           brand="orbis"
           eyebrow="Ver nuestra"
           title="Colección Orbis II"
-          description="Prendas casuales para el día a día, pensadas para damas y caballeros que buscan comodidad sin perder estilo. Venta de ropa para damas, caballeros y niños."
+          description="Prendas casuales para el día a día, pensadas para damas y caballeros que buscan comodidad sin perder estilo. Venta de ropa para damas y caballeros."
           buttonLabel="Ver lookbook →"
           buttonTo="/orbis-ii"
           photo={STYLES_ORBIS[0]}

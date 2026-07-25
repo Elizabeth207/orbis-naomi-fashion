@@ -30,7 +30,7 @@ export default function Navbar() {
               <span className="text-orbis text-xl md:text-2xl lg:text-[26px] tracking-wide">
                 ORBIS II
               </span>
-              <span className="hidden md:inline text-ink-soft/70 text-sm font-sans italic">
+              <span className="hidden md:inline text-ink-soft/70 text-base lg:text-lg font-sans italic">
                 &
               </span>
               <span className="text-naomi text-xl md:text-2xl lg:text-[26px] tracking-wide">

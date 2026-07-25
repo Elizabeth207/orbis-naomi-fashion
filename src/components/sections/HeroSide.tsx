@@ -30,7 +30,7 @@ export default function HeroSide({ side, eyebrow, title, description, videoSrc, 
 
       {/* Content — en el lado Naomi se espeja hacia el borde exterior derecho para no
           quedar pegado al panel central que vive en el límite entre ambas mitades */}
-      <div className={`relative z-10 max-w-sm text-left ${isOrbis ? '' : 'md:text-right'}`}>
+      <div className={`relative z-10 max-w-sm md:max-w-md text-left ${isOrbis ? '' : 'md:text-right'}`}>
         <motion.p
           initial={{ opacity: 0, x: xDirection }}
           animate={{ opacity: 1, x: 0 }}

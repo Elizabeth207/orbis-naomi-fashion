@@ -38,7 +38,7 @@ export default function Navbar() {
               </span>
             </div>
             <img
-              src="/images/naomi/logo-tiara.png"
+              src="/images/naomi/logo-tiara.jpg"
               alt="Novias Naomi"
               className="w-8 h-8 md:w-10 md:h-10 object-contain shrink-0"
             />

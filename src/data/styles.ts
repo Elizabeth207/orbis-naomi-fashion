@@ -110,7 +110,7 @@ export const STYLES_NAOMI: Style[] = [
     "vestido xiomara",
     "Vestido Xiomara",
     "Diseño exclusivo con detalles únicos, pensado para una ocasión que merece un vestido irrepetible.",
-    ["coleccion1.png"]
+    ["coleccion1.jpg"]
   ),
   buildStyle(
     "naomi",

@@ -7,13 +7,12 @@ import { WHATSAPP_NUMBER } from "../../lib/constants";
 
 interface FramedPromoProps {
   promotion: Promotion;
-  headerPhoto: Style;
   photoLeft: Style;
   photoRight: Style;
   onPhotoClick?: (style: Style) => void;
 }
 
-export default function FramedPromo({ promotion, headerPhoto, photoLeft, photoRight, onPhotoClick }: FramedPromoProps) {
+export default function FramedPromo({ promotion, photoLeft, photoRight, onPhotoClick }: FramedPromoProps) {
   const isOrbis = promotion.brand === "orbis";
   const eyebrowColor = isOrbis ? "text-orbis-dark" : "text-naomi-dark";
   const whatsappMessage = `Hola, quisiera más información sobre: ${promotion.title}`;
@@ -33,7 +32,7 @@ export default function FramedPromo({ promotion, headerPhoto, photoLeft, photoRi
       return (
         <button
           onClick={() => onPhotoClick(photo)}
-          className="relative aspect-[4/5] md:aspect-auto md:h-full overflow-hidden group cursor-pointer block w-full"
+          className="relative aspect-[3/5] md:aspect-auto md:h-full overflow-hidden group cursor-pointer block w-full"
           aria-label={`Ver detalle de ${photo.name}`}
         >
           {content}
@@ -41,7 +40,7 @@ export default function FramedPromo({ promotion, headerPhoto, photoLeft, photoRi
       );
     }
 
-    return <div className="relative aspect-[4/5] md:aspect-auto md:h-full overflow-hidden group">{content}</div>;
+    return <div className="relative aspect-[3/5] md:aspect-auto md:h-full overflow-hidden group">{content}</div>;
   };
 
   return (
@@ -49,16 +48,20 @@ export default function FramedPromo({ promotion, headerPhoto, photoLeft, photoRi
       <section className="grid grid-cols-1 md:grid-cols-3">
         {renderPhoto(photoLeft)}
 
-        <div className="flex flex-col items-center justify-center p-10 md:p-8">
-          <div className="w-full max-w-xs aspect-[4/3] overflow-hidden mb-6 shadow-md">
-            <PhotoOrFallback
-              src={headerPhoto.coverImage}
-              brand={headerPhoto.brand}
-              alt={headerPhoto.name}
-              className="w-full h-full object-cover"
+        <div className="flex flex-col items-center justify-center p-10 md:p-12">
+          <div className="w-full max-w-[20rem] aspect-[9/16] overflow-hidden mb-6 shadow-md bg-ink">
+            <video
+              src="/video/video.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label={`Video promocional: ${promotion.title}`}
+              className="w-full h-full object-contain"
             />
           </div>
-          <div className="text-center border-t border-b border-line py-8 px-2 max-w-xs">
+          <div className="text-center border-t border-b border-line py-10 px-2 max-w-[20rem]">
             <p className={`font-sans text-xs uppercase tracking-[0.2em] font-semibold ${eyebrowColor} mb-3`}>
               {promotion.eyebrow}
             </p>

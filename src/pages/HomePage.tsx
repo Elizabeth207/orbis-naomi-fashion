@@ -44,7 +44,6 @@ export default function HomePage() {
 
       <FramedPromo
         promotion={PROMOTIONS[0]}
-        headerPhoto={STYLES_NAOMI[1]}
         photoLeft={STYLES_NAOMI[0]}
         photoRight={STYLES_NAOMI[5]}
         onPhotoClick={setSelectedStyle}

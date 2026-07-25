@@ -3,6 +3,7 @@ import type { Style } from '../data/styles'
 import { STYLES_NAOMI } from '../data/styles'
 import BrandHero from '../components/sections/BrandHero'
 import BrandStory from '../components/sections/BrandStory'
+import NaomiOfferings from '../components/sections/NaomiOfferings'
 import StyleGrid from '../components/sections/StyleGrid'
 import StyleDetailModal from '../components/ui/StyleDetailModal'
 
@@ -15,9 +16,10 @@ export default function NaomiPage() {
         brand="naomi"
         eyebrow="Moda de gala"
         title="Novias Naomi"
-        description="Vestidos y prendas de gala para cada ocasión especial, desde los 8 años."
+        description="Venta y alquiler de vestidos y prendas de gala para niñas, jóvenes y adultas, desde los 8 años. Cada ocasión merece un vestido a su altura."
         imageSrc="/images/naomi/hero.jpg"
       />
+      <NaomiOfferings />
       <BrandStory
         title="Sobre Novias Naomi"
         paragraphs={[

@@ -10,7 +10,7 @@ export default function Hero() {
         side="orbis"
         eyebrow="Siempre a la Moda"
         title={['Orbis II']}
-        description="Ropa casual para Damas y Caballeros. Prendas del día a día con estilo urbano y buena calidad, para toda ocasión."
+        description="Venta de ropa casual para damas, caballeros y niños. Prendas del día a día con estilo urbano y buena calidad, para toda ocasión."
         videoSrc="/video/orbis-hero.mp4"
         linkTo="/orbis-ii"
       />
@@ -18,9 +18,9 @@ export default function Hero() {
       {/* NOVIAS NAOMI Side */}
       <HeroSide
         side="naomi"
-        eyebrow="Glamour, Elegancia y mas"
+        eyebrow="Glamour, elegancia & más..."
         title={['Novias', 'Naomi']}
-        description="Vestidos de novia, gala y fiesta para niñas, jóvenes y adultas, desde los 8 años. Cada ocasión merece un vestido a su altura."
+        description="Venta & alquiler de vestidos de novia, quinceañeras, bautizos, promociones, graduaciones y ternos, para caballeros, niños y damas — con calzados de vestir y accesorios para damas & caballeros."
         videoSrc="/video/naomi-hero.mp4"
         linkTo="/novias-naomi"
       />

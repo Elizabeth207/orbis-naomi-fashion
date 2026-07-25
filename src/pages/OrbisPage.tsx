@@ -15,7 +15,7 @@ export default function OrbisPage() {
         brand="orbis"
         eyebrow="Moda casual"
         title="Orbis II"
-        description="Ropa casual para damas y caballeros, para toda ocasión."
+        description="Venta de ropa casual para damas, caballeros y niños. Prendas del día a día con estilo urbano y buena calidad, para toda ocasión."
         imageSrc="/images/orbis/hero.jpg"
       />
       <BrandStory

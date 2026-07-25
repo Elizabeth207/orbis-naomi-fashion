@@ -21,7 +21,7 @@ export default function OrbisPage() {
       <BrandStory
         title="Sobre Orbis II"
         paragraphs={[
-          "Orbis II nace para vestir el día a día de Pichanaki con prendas casuales de calidad, pensadas tanto para damas como para caballeros.",
+          "Orbis II nace para vestir el día a día de Pichanaki con ventas de prendas casuales de calidad, pensadas para damas, caballeros y niños.",
           "Aquí encontrarás desde básicos de uso diario hasta piezas de abrigo para el clima de la sierra, siempre con buena caída y precios justos."
         ]}
       />

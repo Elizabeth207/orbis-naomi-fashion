@@ -23,7 +23,7 @@ export default function HomePage() {
           brand="orbis"
           eyebrow="Ver nuestra"
           title="Colección Orbis II"
-          description="Prendas casuales para el día a día, pensadas para damas y caballeros que buscan comodidad sin perder estilo."
+          description="Prendas casuales para el día a día, pensadas para damas y caballeros que buscan comodidad sin perder estilo. Venta de ropa para damas, caballeros y niños."
           buttonLabel="Ver lookbook →"
           buttonTo="/orbis-ii"
           photo={STYLES_ORBIS[0]}
@@ -33,7 +33,7 @@ export default function HomePage() {
           brand="naomi"
           eyebrow="Ver nuestra"
           title="Colección Naomi"
-          description="Vestidos de novia, gala y quinceañera para cada ocasión especial, desde los 8 años."
+          description="Venta y alquiler de vestidos de novia, gala, quinceañera y fiesta, para damas, caballeros y niños — con calzado y accesorios para completar cada look."
           buttonLabel="Ver lookbook →"
           buttonTo="/novias-naomi"
           photo={STYLES_NAOMI[0]}

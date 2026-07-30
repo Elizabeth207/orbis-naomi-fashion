@@ -10,7 +10,7 @@ export default function Hero() {
         side="orbis"
         eyebrow="Siempre a la Moda"
         title={['Orbis II']}
-        description="Venta de ropa casual para Damas y caballeros, prendas con estilo urbano y muy buena calidad."
+        description="Venta de ropa casual para damas y caballeros, con estilo urbano y elegante, de excelente calidad."
         videoSrc="/video/orbis-hero.mp4"
         linkTo="/orbis-ii"
       />
@@ -20,7 +20,7 @@ export default function Hero() {
         side="naomi"
         eyebrow="Glamour, elegancia & más..."
         title={['Novias', 'Naomi']}
-        description="VENTA & ALQUILER de vestidos de novias, quinceañeras, bautizos, promociones, graduaciones, ternos para adultos y niños. Calzados de vestir para damas y caballeros y accesorios en general."
+        description="VENTA & ALQUILER de vestidos para novias, quinceañeras, bautizos, promociones y graduaciones. También ofrecemos ternos para adultos y niños, calzado de vestir para damas y caballeros, además de accesorios en general."
         videoSrc="/video/naomi-hero.mp4"
         linkTo="/novias-naomi"
       />
@@ -42,6 +42,7 @@ export default function Hero() {
           <p className="font-sans text-[9px] uppercase tracking-[0.14em] text-ink-soft pb-4 border-b border-line">
             Pichanaki, Junín
           </p>
+          
         </div>
         <motion.div
           whileHover={{ scale: 1.03 }}

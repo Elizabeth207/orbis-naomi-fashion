@@ -5,6 +5,7 @@ import BrandHero from '../components/sections/BrandHero'
 import BrandStory from '../components/sections/BrandStory'
 import NaomiOfferings from '../components/sections/NaomiOfferings'
 import StyleGrid from '../components/sections/StyleGrid'
+import NaomiGallerySection from '../components/sections/NaomiGallerySection'
 import StyleDetailModal from '../components/ui/StyleDetailModal'
 
 export default function NaomiPage() {
@@ -33,6 +34,7 @@ export default function NaomiPage() {
         styles={STYLES_NAOMI}
         onStyleClick={setSelectedStyle}
       />
+      <NaomiGallerySection />
       <StyleDetailModal
         style={selectedStyle}
         onClose={() => setSelectedStyle(null)}

@@ -1,6 +1,6 @@
 export const BRAND = {
-  orbis: { name: "Orbis II", tagline: "Venta de ropa casual para damas y caballeros." },
-  naomi: { name: "Novias Naomi", tagline: "Venta y alquiler de vestidos de novia, gala y fiesta para toda ocasión, desde los 8 años." },
+  orbis: { name: "Orbis II", tagline: "Venta de ropa casual para damas y caballeros, con estilo urbano y elegante, de excelente calidad." },
+  naomi: { name: "Novias Naomi", tagline: "Venta y alquiler de vestidos para novias, quinceañeras, bautizos, promociones y graduaciones. También ofrecemos ternos para adultos y niños, calzado de vestir para damas y caballeros, además de accesorios en general." },
 };
 
 export const WHATSAPP_NUMBER = "51916621772";

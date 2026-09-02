@@ -118,5 +118,13 @@ export const STYLES_NAOMI: Style[] = [
     "Victoria Ivory",
     "Vestido en marfil clásico, con líneas limpias que capturan una elegancia serena y atemporal.",
     ["coleccion1.jpg", "coleccion2.jpg", "coleccion3.jpg"]
-  )
+  ),
+  {
+    id: "vestido-rosa-naomi",
+    brand: "naomi",
+    name: "Vestido Rosa",
+    description: "Elegante vestido rosa en tono suave, perfecto para ocasiones especiales donde quieres brillar con delicadeza y feminidad.",
+    coverImage: "/images/naomi/estilos/vestido rosa.jpg",
+    images: ["/images/naomi/estilos/vestido rosa.jpg"]
+  }
 ];

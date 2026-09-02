@@ -6,7 +6,24 @@ import BrandStory from '../components/sections/BrandStory'
 import NaomiOfferings from '../components/sections/NaomiOfferings'
 import StyleGrid from '../components/sections/StyleGrid'
 import NaomiGallerySection from '../components/sections/NaomiGallerySection'
+import NaomiVideoShowcase from '../components/sections/NaomiVideoShowcase'
+import NaomiKidsSection from '../components/sections/NaomiKidsSection'
 import StyleDetailModal from '../components/ui/StyleDetailModal'
+
+const NAOMI_VIDEOS = [
+  '/video/nahomi1.mp4',
+  '/video/nahomi2.mp4',
+  '/video/naomi3.mp4'
+]
+
+const NAOMI_KIDS_IMAGES = [
+  '/images/naomi/niños/niña9.jpg',
+  '/images/naomi/niños/niña10.jpg',
+  '/images/naomi/niños/niña11.jpg',
+  '/images/naomi/niños/niña12.jpg',
+  '/images/naomi/niños/niña13.jpg',
+  '/images/naomi/niños/niña14.jpg'
+]
 
 export default function NaomiPage() {
   const [selectedStyle, setSelectedStyle] = useState<Style | null>(null)
@@ -21,6 +38,7 @@ export default function NaomiPage() {
         imageSrc="/images/naomi/hero.jpg"
       />
       <NaomiOfferings />
+      <NaomiVideoShowcase videos={NAOMI_VIDEOS} />
       <BrandStory
         title="Sobre Novias Naomi"
         paragraphs={[
@@ -34,6 +52,7 @@ export default function NaomiPage() {
         styles={STYLES_NAOMI}
         onStyleClick={setSelectedStyle}
       />
+      <NaomiKidsSection images={NAOMI_KIDS_IMAGES} />
       <NaomiGallerySection />
       <StyleDetailModal
         style={selectedStyle}

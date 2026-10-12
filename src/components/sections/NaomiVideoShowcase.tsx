@@ -49,7 +49,7 @@ export default function NaomiVideoShowcase({ videos }: NaomiVideoShowcaseProps) 
                     activeVideo === index
                       ? 'border-naomi ring-2 ring-naomi/30'
                       : 'border-line hover:border-ink/30'
-                  }`}nm  m 
+                  }`} 
                 >
                   <video
                     className="w-full h-full object-contain"

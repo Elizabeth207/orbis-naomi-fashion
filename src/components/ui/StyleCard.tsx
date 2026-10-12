@@ -22,13 +22,13 @@ export default function StyleCard({ style, onClick }: StyleCardProps) {
       onClick={onClick}
       whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 300, damping: 22 }}
-      className="w-full aspect-[3/4] overflow-hidden relative group cursor-pointer text-left"
+      className="w-full min-h-[400px] overflow-hidden relative group cursor-pointer text-left"
     >
       <PhotoOrFallback
         src={style.coverImage}
         brand={style.brand}
         alt={style.name}
-        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        className="w-full h-auto object-scale-down bg-paper/5 transition-transform duration-700 group-hover:scale-105"
       />
 
       {/* Decorative like button */}

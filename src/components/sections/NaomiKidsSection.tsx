@@ -32,14 +32,14 @@ export default function NaomiKidsSection({ images }: NaomiKidsSectionProps) {
             {images.map((image, index) => (
               <div
                 key={index}
-                className="relative aspect-[3/4] rounded-lg overflow-hidden cursor-pointer group"
+                className="relative min-h-[350px] rounded-lg overflow-hidden cursor-pointer group"
                 onClick={() => setActiveImageIndex(index)}
               >
                 <PhotoOrFallback
                   src={image}
                   brand="naomi"
                   alt={`Vestido para niña ${index + 1}`}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-auto object-scale-down bg-paper/5 transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

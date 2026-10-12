@@ -51,7 +51,7 @@ const QUINCEANERAS_FILES = [
   "quince8.jpg",
 ];
 
-const CABALLEROS_FILES = ["naomi1.png", "naomi2.jpg", "naomi3.jpg", "naomi4.jpg", "naomi5.jpg", "naomi6.jpg"];
+const CABALLEROS_FILES = ["img 1.jpg", "naomi1.png", "naomi2.jpg", "naomi3.jpg", "naomi4.jpg", "naomi5.jpg", "naomi6.jpg"];
 
 const NINOS_FILES = [
   "niña1.jpg",

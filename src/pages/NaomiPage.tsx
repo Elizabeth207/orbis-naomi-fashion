@@ -17,6 +17,7 @@ const NAOMI_VIDEOS = [
 ]
 
 const NAOMI_KIDS_IMAGES = [
+  '/images/naomi/niños/img 1.jpg',
   '/images/naomi/niños/niña9.jpg',
   '/images/naomi/niños/niña10.jpg',
   '/images/naomi/niños/niña11.jpg',

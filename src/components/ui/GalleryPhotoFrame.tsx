@@ -14,21 +14,21 @@ export default function GalleryPhotoFrame({
   onClick,
 }: GalleryPhotoFrameProps) {
   const isOrbis = photo.brand === "orbis";
-  const aspectRatio = size === "tall" ? "aspect-[3/4]" : "aspect-[4/3]";
+  const minHeight = size === "tall" ? "min-h-[350px]" : "min-h-[280px]";
   const brandPillBg = isOrbis ? "bg-orbis/90" : "bg-naomi/90";
   const brandName = BRAND[photo.brand].name;
 
   return (
     <button
       onClick={onClick}
-      className={`w-full text-left overflow-hidden group relative ${aspectRatio} cursor-pointer`}
+      className={`w-full text-left overflow-hidden group relative ${minHeight} cursor-pointer`}
     >
       {/* Photo or fallback */}
       <PhotoOrFallback
         src={photo.src}
         brand={photo.brand}
         alt={photo.caption}
-        className="transition-transform duration-700 group-hover:scale-105"
+        className="w-full h-auto object-scale-down bg-paper/5 transition-transform duration-700 group-hover:scale-105"
       />
 
       {/* Brand pill */}

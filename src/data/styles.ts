@@ -73,7 +73,31 @@ export const STYLES_ORBIS: Style[] = [
     "Jean Gris Grafito",
     "Jean gris grafito de corte recto, un comodín perfecto para looks urbanos de diario.",
     ["coleccion1.jpg", "collecion2.jpg", "coleccion3.jpg", "coleccion4.jpg"]
-  )
+  ),
+  {
+    id: "orbis-estilo-1",
+    brand: "orbis",
+    name: "Estilo Urbano Casual",
+    description: "Look contemporáneo con prendas versátiles perfectas para el día a día, combinando comodidad y diseño moderno.",
+    coverImage: "/images/orbis/estilos/img1.jpg",
+    images: ["/images/orbis/estilos/img1.jpg"]
+  },
+  {
+    id: "orbis-estilo-2",
+    brand: "orbis",
+    name: "Estilo Elegante Diario",
+    description: "Prendas elegantes para uso casual, ideales para quienes buscan un look sofisticado sin sacrificar comodidad.",
+    coverImage: "/images/orbis/estilos/img2.jpg",
+    images: ["/images/orbis/estilos/img2.jpg"]
+  },
+  {
+    id: "orbis-estilo-3",
+    brand: "orbis",
+    name: "Estilo Moderno",
+    description: "Diseños actuales con cortes favorecedores, perfectos para cualquier ocasión informal con toque de estilo.",
+    coverImage: "/images/orbis/estilos/img3.jpg",
+    images: ["/images/orbis/estilos/img3.jpg"]
+  }
 ];
 
 export const STYLES_NAOMI: Style[] = [
@@ -126,5 +150,13 @@ export const STYLES_NAOMI: Style[] = [
     description: "Elegante vestido rosa en tono suave, perfecto para ocasiones especiales donde quieres brillar con delicadeza y feminidad.",
     coverImage: "/images/naomi/estilos/vestido rosa.jpg",
     images: ["/images/naomi/estilos/vestido rosa.jpg"]
+  },
+  {
+    id: "naomi-estilo-1",
+    brand: "naomi",
+    name: "Estilo Gala Elegante",
+    description: "Diseño sofisticado para eventos especiales, combinando elegancia atemporal con detalles contemporáneos.",
+    coverImage: "/images/naomi/estilos/img1.jpg",
+    images: ["/images/naomi/estilos/img1.jpg"]
   }
 ];

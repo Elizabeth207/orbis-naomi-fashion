@@ -72,8 +72,8 @@ export default function StyleDetailModal({ style, onClose }: StyleDetailModalPro
                     alt={`${style.name} — foto ${index + 1}`}
                     className={
                       isLoneWide
-                        ? "col-span-2 aspect-[16/10] object-cover"
-                        : "aspect-[4/5] object-cover"
+                        ? "col-span-2 min-h-[400px] object-scale-down bg-paper/5"
+                        : "min-h-[350px] object-scale-down bg-paper/5"
                     }
                   />
                 );

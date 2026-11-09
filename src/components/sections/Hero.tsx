@@ -8,7 +8,7 @@ export default function Hero() {
       {/* ORBIS II Side */}
       <HeroSide
         side="orbis"
-        eyebrow="Siempre a la Moda"
+        eyebrow="Siempre a la moda"
         title={['Orbis II']}
         description="Venta de ropa casual para damas y caballeros, con estilo urbano y elegante, de excelente calidad."
         videoSrc="/video/orbis-hero.mp4"
@@ -20,7 +20,7 @@ export default function Hero() {
         side="naomi"
         eyebrow="Glamour, elegancia & más..."
         title={['Novias', 'Naomi']}
-        description="VENTA & ALQUILER de vestidos para novias, quinceañeras, bautizos, promociones y graduaciones. También ofrecemos ternos para adultos y niños, calzado de vestir para damas y caballeros, además de accesorios en general."
+        description="Venta y alquiler de vestidos para novias, quinceañeras, bautizos, promociones y graduaciones. También ofrecemos ternos para adultos y niños, calzado de vestir para damas y caballeros, además de accesorios en general."
         videoSrc="/video/naomi-hero.mp4"
         linkTo="/novias-naomi"
       />
@@ -33,16 +33,15 @@ export default function Hero() {
         className="relative mx-auto my-4 w-[180px] bg-paper/95 backdrop-blur-sm px-5 py-6 shadow-2xl text-center md:absolute md:top-[38%] md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:z-20 md:my-0"
       >
         <div className="border-t border-line pt-4">
-          <p className="font-sans text-[9px] uppercase tracking-[0.22em] text-ink-soft mb-2">
+          <p className="font-sans text-[10px] uppercase tracking-[0.24em] text-ink-soft mb-2.5 font-medium">
             ORBIS & NAOMI
           </p>
-          <h3 className="font-serif text-lg text-ink mb-2 leading-snug">
+          <h3 className="font-serif text-xl text-ink mb-2.5 leading-snug tracking-tight">
             Estilo incansable
           </h3>
-          <p className="font-sans text-[9px] uppercase tracking-[0.14em] text-ink-soft pb-4 border-b border-line">
+          <p className="font-sans text-[10px] uppercase tracking-[0.16em] text-ink-soft pb-4 border-b border-line">
             Pichanaki, Junín
           </p>
-          
         </div>
         <motion.div
           whileHover={{ scale: 1.03 }}
@@ -52,7 +51,7 @@ export default function Hero() {
         >
           <Link
             to="/nuestras-tiendas"
-            className="inline-block border border-ink px-4 py-2 text-[9px] uppercase tracking-widest text-ink hover:bg-ink hover:text-paper transition-colors"
+            className="inline-block border border-ink px-5 py-2.5 text-[10px] uppercase tracking-[0.18em] font-semibold text-ink hover:bg-ink hover:text-paper transition-colors duration-300"
           >
             Ver tiendas
           </Link>

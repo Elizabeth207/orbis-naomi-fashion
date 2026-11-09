@@ -62,10 +62,10 @@ export default function ContactForm() {
   };
 
   const inputClass =
-    "w-full border border-line bg-paper px-4 py-2.5 text-sm focus:outline-none focus:border-ink focus:ring-1 focus:ring-ink/15 transition-all duration-200";
+    "w-full border border-line bg-paper px-4 py-3 text-sm rounded-md focus:outline-none focus:border-ink focus:ring-2 focus:ring-ink/10 transition-all duration-200";
 
   return (
-    <div className="bg-paper border border-line shadow-sm p-8 md:p-9">
+    <div className="bg-paper border border-line rounded-2xl shadow-[0_12px_40px_rgba(34,31,28,0.08)] p-8 md:p-10 ring-1 ring-ink/5">
       <AnimatePresence mode="wait">
         {submitted ? (
           <motion.div
@@ -110,7 +110,11 @@ export default function ContactForm() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <h3 className="font-serif text-2xl text-ink mb-2">Escríbenos</h3>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-ink-soft font-semibold mb-2">
+              Formulario
+            </p>
+            <h3 className="font-serif text-2xl md:text-3xl text-ink mb-2 tracking-tight">Escríbenos</h3>
+            <div className="w-10 h-px bg-line mb-5" aria-hidden="true" />
             <p className="text-sm text-ink-soft mb-8 leading-relaxed">
               Completa el formulario y te responderemos a la brevedad, o
               escríbenos directo por WhatsApp si prefieres una respuesta más
@@ -179,7 +183,7 @@ export default function ContactForm() {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-ink text-paper py-3.5 text-sm font-medium hover:bg-orbis-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-ink text-paper py-3.5 text-sm font-medium uppercase tracking-[0.12em] shadow-sm hover:bg-orbis-dark hover:shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   whileHover={!isSubmitting ? { scale: 1.02 } : {}}
                   whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}

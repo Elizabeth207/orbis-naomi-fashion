@@ -24,7 +24,7 @@ export default function TiendasPage() {
 
       {/* Editorial header image */}
       <Reveal>
-        <div className="relative max-w-5xl mx-auto aspect-[16/7] md:aspect-[21/8] overflow-hidden mb-16">
+        <div className="relative max-w-5xl mx-auto aspect-[16/7] md:aspect-[21/8] overflow-hidden mb-16 rounded-2xl border border-line shadow-[0_16px_48px_rgba(34,31,28,0.1)] ring-1 ring-ink/5">
           <PhotoOrFallback
             src={HEADER_IMAGE}
             brand="orbis"
@@ -52,16 +52,19 @@ export default function TiendasPage() {
 
       {/* Final CTA section */}
       <Reveal>
-        <div className="border-t border-line pt-12 mt-4 mb-16 text-center max-w-2xl mx-auto">
-          <h2 className="font-serif text-2xl text-ink mb-3">
+        <div className="border border-line rounded-2xl bg-gradient-to-b from-paper to-ink/[0.03] px-6 py-12 md:py-14 mt-4 mb-16 text-center max-w-2xl mx-auto shadow-sm">
+          <p className="text-[10px] uppercase tracking-[0.2em] text-ink-soft font-semibold mb-3">
+            Te ayudamos
+          </p>
+          <h2 className="font-serif text-2xl md:text-3xl text-ink mb-3 tracking-tight">
             ¿No sabes cuál visitar primero?
           </h2>
-          <p className="font-sans text-sm text-ink-soft mb-6 leading-relaxed">
+          <p className="font-sans text-sm text-ink-soft mb-8 leading-relaxed max-w-md mx-auto">
             Escríbenos por WhatsApp y te ayudamos a elegir según lo que buscas.
           </p>
           <WhatsAppButton
             phone={WHATSAPP_NUMBER}
-            className="mx-auto bg-ink text-paper px-7 py-3.5 text-sm font-medium justify-center w-fit"
+            className="mx-auto bg-ink text-paper px-8 py-3.5 text-sm font-medium justify-center w-fit shadow-md hover:shadow-lg transition-shadow"
           />
         </div>
       </Reveal>

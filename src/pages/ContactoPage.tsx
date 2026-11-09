@@ -57,7 +57,7 @@ export default function ContactoPage() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
-            className="font-sans text-sm text-ink-soft leading-relaxed max-w-sm"
+            className="font-sans text-sm md:text-[15px] text-ink-soft leading-relaxed max-w-sm"
           >
             Escríbenos por el medio que prefieras. Estamos para ayudarte a
             encontrar lo que buscas, sea una prenda casual o el vestido para
@@ -67,14 +67,15 @@ export default function ContactoPage() {
       </section>
 
       <div className="px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto my-16">
-          {/* Columna izquierda: Formulario */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 max-w-6xl mx-auto my-16">
           <Reveal>
             <ContactForm />
           </Reveal>
 
-          {/* Columna derecha: Info de contacto y tiendas */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 md:pt-2">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-ink-soft font-semibold mb-1 md:mb-0">
+              Medios de contacto
+            </p>
             <Reveal delay={0.05}>
               <ContactInfoCard
                 icon="whatsapp"
@@ -102,8 +103,8 @@ export default function ContactoPage() {
 
             {/* Resumen de tiendas */}
             <Reveal delay={0.26}>
-              <div className="mt-4">
-                <h4 className="text-xs uppercase tracking-widest text-ink-soft font-semibold mb-3">
+              <div className="mt-6 pt-6 border-t border-line">
+                <h4 className="text-[11px] uppercase tracking-[0.18em] text-ink-soft font-semibold mb-4">
                   Nuestras tiendas
                 </h4>
                 <div className="space-y-3">
@@ -118,16 +119,16 @@ export default function ContactoPage() {
                         key={store.id}
                         whileHover={{ y: -2 }}
                         transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                        className={`border border-line border-l-4 ${accentBorder} p-4 hover:shadow-md transition-shadow`}
+                        className={`rounded-xl border border-line border-l-4 ${accentBorder} p-5 bg-paper shadow-sm hover:shadow-md transition-shadow ring-1 ring-ink/5`}
                       >
                         <div
-                          className={`${badgeBg} ${badgeText} text-[10px] uppercase tracking-widest px-3 py-1 rounded-sm inline-block mb-2`}
+                          className={`${badgeBg} ${badgeText} text-[10px] uppercase tracking-[0.14em] px-3 py-1 rounded-full inline-block mb-2 font-semibold`}
                         >
                           {store.name}
                         </div>
-                        <h5 className="font-serif text-base text-ink mb-1">{store.name}</h5>
-                        <p className="text-xs text-ink-soft mb-1">{store.address}</p>
-                        <p className="text-xs text-ink-soft">{store.hours}</p>
+                        <h5 className="font-serif text-lg text-ink mb-1.5">{store.name}</h5>
+                        <p className="text-xs text-ink-soft mb-1 leading-relaxed">{store.address}</p>
+                        <p className="text-xs text-ink-soft font-medium">{store.hours}</p>
                       </motion.div>
                     );
                   })}

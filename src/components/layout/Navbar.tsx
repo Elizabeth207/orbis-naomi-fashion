@@ -62,38 +62,40 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 bg-paper/95 backdrop-blur border-b border-line">
       <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 w-full min-w-0">
-        <div className="flex items-center justify-between h-16 sm:h-20 md:h-24 gap-2 sm:gap-6 min-w-0">
+        <div className="flex items-center justify-between h-16 sm:h-20 md:h-24 gap-2 md:gap-4 lg:gap-6 min-w-0">
           <Link
             to="/"
-            className="font-serif leading-tight min-w-0 flex items-center gap-1.5 sm:gap-2.5 flex-1 max-w-[calc(100%-2.75rem)]"
+            className="font-serif leading-none shrink-0 flex items-center gap-1.5 sm:gap-2 md:gap-2.5 min-w-0 max-w-[calc(100%-2.75rem)] md:max-w-none"
           >
             <img
               src="/images/orbis/logo-anillos.png"
               alt="Orbis II"
               className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 object-contain shrink-0"
             />
-            <div className="min-w-0 flex flex-col md:flex-row md:items-baseline md:gap-2.5">
-              <span className="text-orbis text-[11px] sm:text-xl md:text-2xl lg:text-[26px] tracking-wide leading-none">
+            <div className="min-w-0 flex flex-col leading-tight md:flex-row md:items-baseline md:gap-2 lg:gap-2.5">
+              <span className="text-orbis text-[11px] sm:text-sm md:text-xl lg:text-2xl xl:text-[26px] tracking-wide whitespace-nowrap">
                 ORBIS II
               </span>
-              <span className="hidden md:inline text-ink-soft/70 text-base lg:text-lg font-sans italic">&</span>
-              <span className="text-naomi text-[11px] sm:text-xl md:text-2xl lg:text-[26px] tracking-wide leading-none">
+              <span className="hidden md:inline text-ink-soft/70 text-base lg:text-lg font-sans italic shrink-0">
+                &
+              </span>
+              <span className="text-naomi text-[11px] sm:text-sm md:text-xl lg:text-2xl xl:text-[26px] tracking-wide whitespace-nowrap">
                 NOVIAS NAOMI
               </span>
             </div>
             <img
               src="/images/naomi/logo-tiara.jpg"
               alt="Novias Naomi"
-              className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 object-contain shrink-0 hidden min-[360px]:block"
+              className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 object-contain shrink-0 hidden min-[360px]:block md:block"
             />
           </Link>
 
-          <div className="hidden md:flex items-center gap-7 lg:gap-8">
+          <div className="hidden md:flex items-center gap-4 lg:gap-7 xl:gap-8 shrink min-w-0 ml-2 lg:ml-4">
             {NAV_LINKS.map((link) => (
               <NavLink
                 key={link.path}
                 to={link.path}
-                className="relative font-sans text-[11px] lg:text-xs uppercase tracking-widest pb-1.5 transition-colors whitespace-nowrap text-ink-soft hover:text-ink"
+                className="relative font-sans text-[10px] lg:text-[11px] xl:text-xs uppercase tracking-widest pb-1.5 transition-colors whitespace-nowrap text-ink-soft hover:text-ink"
               >
                 {({ isActive }) => (
                   <>

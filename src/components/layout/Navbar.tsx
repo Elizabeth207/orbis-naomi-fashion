@@ -62,10 +62,10 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 bg-paper/95 backdrop-blur border-b border-line">
       <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 w-full min-w-0">
-        <div className="flex items-center justify-between h-16 sm:h-20 md:h-24 gap-2 md:gap-4 lg:gap-6 min-w-0">
+        <div className="flex items-center justify-between h-16 sm:h-20 md:grid md:grid-cols-[auto_minmax(0,1fr)_auto] md:items-center md:gap-x-5 lg:gap-x-8 md:h-24 min-w-0">
           <Link
             to="/"
-            className="font-serif leading-none shrink-0 flex items-center gap-1.5 sm:gap-2 md:gap-2.5 min-w-0 max-w-[calc(100%-2.75rem)] md:max-w-none"
+            className="font-serif leading-none shrink-0 flex items-center gap-1.5 sm:gap-2 md:gap-2.5 min-w-0 max-w-[calc(100%-2.75rem)] md:max-w-none md:col-start-1"
           >
             <img
               src="/images/orbis/logo-anillos.png"
@@ -90,12 +90,12 @@ export default function Navbar() {
             />
           </Link>
 
-          <div className="hidden md:flex items-center gap-4 lg:gap-7 xl:gap-8 shrink min-w-0 ml-2 lg:ml-4">
+          <div className="hidden md:flex md:col-start-2 flex-wrap items-center justify-end gap-x-2.5 gap-y-1 lg:gap-x-4 xl:gap-x-6 min-w-0 pr-2 lg:pr-4">
             {NAV_LINKS.map((link) => (
               <NavLink
                 key={link.path}
                 to={link.path}
-                className="relative font-sans text-[10px] lg:text-[11px] xl:text-xs uppercase tracking-widest pb-1.5 transition-colors whitespace-nowrap text-ink-soft hover:text-ink"
+                className="relative font-sans text-[9px] md:text-[10px] lg:text-[11px] xl:text-xs uppercase tracking-wide xl:tracking-widest pb-1.5 transition-colors whitespace-nowrap text-ink-soft hover:text-ink shrink-0"
               >
                 {({ isActive }) => (
                   <>
@@ -113,21 +113,22 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="hidden md:block shrink-0">
+          <div className="hidden md:flex md:col-start-3 shrink-0 items-center pl-4 lg:pl-6 ml-1 border-l border-line/70">
             <a
               href={`https://wa.me/${WHATSAPP_NUMBER}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-ink px-5 py-2.5 text-[11px] lg:text-xs uppercase tracking-widest font-medium transition-all hover:bg-ink hover:text-paper"
+              className="inline-flex items-center gap-2 border border-ink px-3 py-2 lg:px-5 lg:py-2.5 text-[10px] lg:text-xs uppercase tracking-wide lg:tracking-widest font-medium transition-all hover:bg-ink hover:text-paper whitespace-nowrap"
+              aria-label="Contactar por WhatsApp"
             >
-              <MessageCircle className="w-4 h-4" aria-hidden="true" />
-              WhatsApp
+              <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
+              <span className="hidden lg:inline">WhatsApp</span>
             </a>
           </div>
 
           <button
             type="button"
-            className="md:hidden text-ink shrink-0 w-10 h-10 flex items-center justify-center"
+            className="md:hidden text-ink shrink-0 w-10 h-10 flex items-center justify-center col-start-3 justify-self-end"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-expanded={mobileMenuOpen}
             aria-controls={mobileMenuId}

@@ -13,8 +13,10 @@ import {
   Heart,
   Image as ImageIcon,
   Maximize2,
+  Minimize2,
   MessageCircle,
   Sparkles,
+  WandSparkles,
   X,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -204,7 +206,7 @@ export default function GalleryLightbox({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.25 }}
-        className="fixed inset-0 z-[200] flex flex-col bg-black/85 backdrop-blur-md"
+        className="fixed inset-0 z-[200] flex flex-col bg-gradient-to-b from-black/90 via-black/85 to-black/95 backdrop-blur-md"
         onClick={(e) => {
           if (e.target === e.currentTarget) onClose();
         }}
@@ -219,13 +221,31 @@ export default function GalleryLightbox({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 8 }}
           transition={{ duration: 0.25 }}
-          className="flex flex-col flex-1 min-h-0 w-full max-w-5xl mx-auto p-4 md:p-6"
+          className="flex flex-col flex-1 min-h-0 w-full max-w-5xl mx-auto p-4 md:p-8 sm:my-4 sm:rounded-2xl sm:border sm:border-white/20 sm:bg-black/40 sm:shadow-[0_32px_90px_rgba(0,0,0,0.55)]"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="flex items-center justify-between gap-3 mb-3 shrink-0">
-            <p className="text-white/90 text-sm font-medium">
-              {resolvedIndex + 1} / {itemsLength}
-            </p>
+          <div
+            className={`h-0.5 w-full rounded-full mb-4 shrink-0 ${brandKey === "orbis" ? "bg-orbis" : "bg-naomi"}`}
+            aria-hidden="true"
+          />
+          <div className="flex items-center justify-between gap-3 mb-4 shrink-0">
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="w-9 h-9 rounded-full bg-white/10 border border-white/20 flex items-center justify-center shrink-0">
+                <CategoryIcon className="w-4 h-4 text-white/90" strokeWidth={1.5} aria-hidden="true" />
+              </span>
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-white/55 font-medium flex items-center gap-1.5">
+                  <WandSparkles className="w-3 h-3" aria-hidden="true" />
+                  Colección
+                </p>
+                <p className="font-serif text-white/95 text-base md:text-lg leading-tight truncate max-w-[12rem] sm:max-w-none">
+                  {categoryLabel}
+                </p>
+                <p className="text-white/70 text-xs font-medium tabular-nums mt-0.5">
+                  Foto {resolvedIndex + 1} de {itemsLength}
+                </p>
+              </div>
+            </div>
             <div className="flex items-center gap-2">
               <button
                 type="button"
@@ -233,7 +253,11 @@ export default function GalleryLightbox({
                 aria-label={zoomed ? "Ajustar a pantalla" : "Ampliar imagen"}
                 className="w-10 h-10 rounded-full bg-white/10 border border-white/25 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
               >
-                <Maximize2 className="w-4 h-4" aria-hidden="true" />
+                {zoomed ? (
+                  <Minimize2 className="w-4 h-4" aria-hidden="true" />
+                ) : (
+                  <Maximize2 className="w-4 h-4" aria-hidden="true" />
+                )}
               </button>
               <button
                 type="button"
@@ -269,12 +293,12 @@ export default function GalleryLightbox({
               </>
             )}
 
-            <motion.div
-              className={`relative w-full h-full max-h-[50vh] md:max-h-[58vh] overflow-hidden ${
-                zoomed ? "cursor-zoom-out" : "cursor-zoom-in"
-              }`}
-              onClick={() => setZoomed(!zoomed)}
-            >
+              <motion.div
+                className={`relative w-full h-full max-h-[52vh] md:max-h-[60vh] rounded-2xl p-2.5 bg-gradient-to-b from-white/12 via-white/5 to-transparent border border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] overflow-hidden ${
+                  zoomed ? "cursor-zoom-out" : "cursor-zoom-in"
+                }`}
+                onClick={() => setZoomed(!zoomed)}
+              >
               <AnimatePresence custom={direction} mode="wait">
                 <motion.div
                   key={photo.id}
@@ -288,9 +312,9 @@ export default function GalleryLightbox({
                   dragConstraints={{ left: 0, right: 0 }}
                   dragElastic={0.12}
                   onDragEnd={handleDragEnd}
-                  className="absolute inset-0"
-                >
-                  <BlurFillImage
+                    className="absolute inset-2 rounded-lg overflow-hidden"
+                  >
+                    <BlurFillImage
                     src={photo.src}
                     brand={brandKey}
                     alt={photo.caption}
@@ -307,7 +331,7 @@ export default function GalleryLightbox({
           {itemsLength > 1 && (
             <div
               ref={thumbStripRef}
-              className="mt-4 flex gap-2 overflow-x-auto pb-1 shrink-0 scrollbar-thin"
+              className="mt-5 flex gap-2.5 overflow-x-auto p-2 rounded-xl bg-white/5 border border-white/10 shrink-0 scrollbar-thin"
             >
               {photos.map((item, index) => {
                 const thumbBrand = resolveBrand(item.brand);
@@ -321,7 +345,7 @@ export default function GalleryLightbox({
                     }}
                     aria-label={`Ver foto ${index + 1}`}
                     aria-current={index === resolvedIndex ? "true" : undefined}
-                    className={`relative shrink-0 w-16 h-16 rounded-md overflow-hidden border-2 transition-opacity ${
+                    className={`relative shrink-0 w-[4.25rem] h-[4.25rem] rounded-lg overflow-hidden border-2 transition-all ${
                       index === resolvedIndex
                         ? thumbBrand === "orbis"
                           ? "border-orbis opacity-100 ring-2 ring-orbis/40"
@@ -343,31 +367,29 @@ export default function GalleryLightbox({
 
           <motion.div
             layout
-            className="mt-4 pt-4 border-t border-white/15 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 shrink-0"
+            className="mt-5 pt-5 border-t border-white/15 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 shrink-0"
           >
-            <div>
+            <div className="min-w-0">
               <span
-                className={`inline-block text-[10px] uppercase tracking-widest font-semibold px-2.5 py-1 rounded-sm mb-2 ${
+                className={`inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest font-semibold px-3 py-1.5 rounded-full mb-2 ${
                   brandKey === "orbis" ? "bg-orbis/90 text-white" : "bg-naomi/90 text-white"
                 }`}
               >
+                {brandKey === "naomi" && (
+                  <Sparkles className="w-3 h-3 opacity-90" aria-hidden="true" />
+                )}
                 {brandInfo.name}
               </span>
-              <p className="font-serif text-lg text-white flex items-center gap-2">
-                <CategoryIcon
-                  className="w-4 h-4 text-white/80 shrink-0"
-                  strokeWidth={1.5}
-                  aria-hidden="true"
-                />
-                {categoryLabel}
-              </p>
+              <p className="font-sans text-xs text-white/60 line-clamp-2">{photo.caption}</p>
             </div>
             <a
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className={`inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-medium text-white transition-colors ${
-                brandKey === "orbis" ? "bg-orbis-dark hover:bg-orbis" : "bg-naomi-dark hover:bg-naomi"
+              className={`inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-medium text-white transition-colors rounded-full shadow-lg ${
+                brandKey === "orbis"
+                  ? "bg-orbis-dark hover:bg-orbis ring-2 ring-orbis/30"
+                  : "bg-naomi-dark hover:bg-naomi ring-2 ring-naomi/30"
               }`}
             >
               <MessageCircle className="w-4 h-4" aria-hidden="true" />

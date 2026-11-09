@@ -11,6 +11,10 @@ import {
   Navigation,
   PackageCheck,
   Ruler,
+  Crown,
+  Heart,
+  Images,
+  Shirt,
   Sparkles,
   X,
 } from "lucide-react";
@@ -151,15 +155,20 @@ export default function StyleDetailModal({ style, onClose, onSelectStyle }: Styl
             role="dialog"
             aria-modal="true"
             aria-labelledby={titleId}
-            className="bg-paper w-full sm:max-w-5xl max-h-[100dvh] sm:max-h-[92vh] rounded-none sm:rounded-xl shadow-2xl overflow-hidden flex flex-col"
+            className="bg-paper w-full sm:max-w-5xl max-h-[100dvh] sm:max-h-[92vh] rounded-none sm:rounded-2xl shadow-[0_24px_80px_rgba(34,31,28,0.18)] overflow-hidden flex flex-col ring-1 ring-ink/5"
             onClick={(e) => e.stopPropagation()}
           >
             <div className={`h-1 w-full shrink-0 ${brandBar}`} aria-hidden="true" />
 
             <div className="flex-1 overflow-y-auto overscroll-contain">
               <div className="grid grid-cols-1 lg:grid-cols-2 min-h-0">
-                <div className="p-4 md:p-6 lg:p-8 bg-ink/[0.02] border-b lg:border-b-0 lg:border-r border-line">
-                  <div className="relative aspect-[3/4] w-full rounded-lg overflow-hidden">
+                <div className="p-4 md:p-6 lg:p-8 bg-gradient-to-b from-ink/[0.03] to-paper border-b lg:border-b-0 lg:border-r border-line">
+                  <p className="flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-ink-soft font-semibold mb-3">
+                    <Images className="w-4 h-4 shrink-0" strokeWidth={1.5} aria-hidden="true" />
+                    Galería del estilo
+                  </p>
+                  <div className="relative aspect-[3/4] w-full rounded-2xl p-2 bg-paper border border-line shadow-[0_16px_48px_rgba(34,31,28,0.14)] ring-1 ring-ink/5">
+                    <div className="relative w-full h-full rounded-xl overflow-hidden bg-ink/[0.03]">
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={`${style.id}-${activeIndex}`}
@@ -197,11 +206,13 @@ export default function StyleDetailModal({ style, onClose, onSelectStyle }: Styl
                         >
                           <ChevronRight className="w-5 h-5" aria-hidden="true" />
                         </button>
-                        <p className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 text-xs font-medium text-white bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm">
+                        <p className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 text-xs font-medium text-white bg-black/55 px-3 py-1.5 rounded-full backdrop-blur-sm flex items-center gap-1.5 tabular-nums">
+                          <Images className="w-3.5 h-3.5 opacity-90" aria-hidden="true" />
                           {activeIndex + 1} / {galleryLength}
                         </p>
                       </>
                     )}
+                    </div>
                   </div>
 
                   {galleryLength > 0 && (
@@ -223,10 +234,10 @@ export default function StyleDetailModal({ style, onClose, onSelectStyle }: Styl
                           onClick={() => setActiveIndex(index)}
                           aria-label={`Ver foto ${index + 1}`}
                           aria-current={index === activeIndex ? "true" : undefined}
-                          className={`relative aspect-square rounded-md overflow-hidden border-2 transition-all ${
+                          className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all shadow-sm ${
                             index === activeIndex
-                              ? `${activeThumbBorder} ring-2 opacity-100`
-                              : "border-line opacity-55 hover:opacity-80"
+                              ? `${activeThumbBorder} ring-2 opacity-100 scale-[1.02]`
+                              : "border-line opacity-55 hover:opacity-90 hover:scale-[1.02]"
                           }`}
                         >
                           <BlurFillImage
@@ -244,10 +255,15 @@ export default function StyleDetailModal({ style, onClose, onSelectStyle }: Styl
                 <div className="p-6 md:p-8 lg:p-10 flex flex-col">
                   <div className="flex items-start justify-between gap-4 mb-4">
                     <span
-                      className={`inline-block text-[10px] uppercase tracking-widest font-semibold px-2.5 py-1 rounded-sm ${
+                      className={`inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest font-semibold px-2.5 py-1 rounded-sm ${
                         isOrbis ? "bg-orbis-tint text-orbis-dark" : "bg-naomi-tint text-naomi-dark"
                       }`}
                     >
+                      {isOrbis ? (
+                        <Shirt className="w-3.5 h-3.5" strokeWidth={1.5} aria-hidden="true" />
+                      ) : (
+                        <Crown className="w-3.5 h-3.5" strokeWidth={1.5} aria-hidden="true" />
+                      )}
                       {brandName}
                     </span>
                     <button
@@ -267,7 +283,10 @@ export default function StyleDetailModal({ style, onClose, onSelectStyle }: Styl
                   <p className="text-ink-soft text-[15px] leading-relaxed">{style.description}</p>
 
                   <motion.div className="mt-8 space-y-3" layout>
-                    <p className="text-xs uppercase tracking-widest text-ink-soft font-semibold mb-2">Detalles</p>
+                    <p className="text-xs uppercase tracking-widest text-ink-soft font-semibold mb-2 flex items-center gap-2">
+                      <Sparkles className="w-3.5 h-3.5" strokeWidth={1.5} aria-hidden="true" />
+                      Detalles
+                    </p>
                     {!isOrbis && (
                       <DetailRow icon={Sparkles} label="Modalidad" value="Venta y alquiler" />
                     )}
@@ -304,7 +323,8 @@ export default function StyleDetailModal({ style, onClose, onSelectStyle }: Styl
 
                   {relatedStyles.length > 0 && onSelectStyle && (
                     <div className="mt-10 pt-8 border-t border-line">
-                      <p className="text-xs uppercase tracking-widest text-ink-soft font-semibold mb-4">
+                      <p className="text-xs uppercase tracking-widest text-ink-soft font-semibold mb-4 flex items-center gap-2">
+                        <Heart className="w-3.5 h-3.5 text-naomi" strokeWidth={1.5} aria-hidden="true" />
                         También te puede gustar
                       </p>
                       <div className="grid grid-cols-3 gap-2">

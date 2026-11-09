@@ -1,13 +1,34 @@
-import { useState } from 'react'
-import Reveal from '../ui/Reveal'
-import PhotoOrFallback from '../ui/PhotoOrFallback'
+import { useCallback, useMemo, useState } from "react";
+import { ArrowUpRight } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import Reveal from "../ui/Reveal";
+import BlurFillImage from "../ui/BlurFillImage";
+import GalleryLightbox from "../ui/GalleryLightbox";
+import type { LightboxPhoto } from "../../types/lightbox";
+import { NAOMI_GALLERY_LABELS } from "../../data/naomiGallery";
 
 interface NaomiKidsSectionProps {
-  images: string[]
+  images: string[];
 }
 
 export default function NaomiKidsSection({ images }: NaomiKidsSectionProps) {
-  const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null)
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const reduceMotion = useReducedMotion();
+
+  const handleCloseLightbox = useCallback(() => setActiveIndex(null), []);
+  const handleSelectIndex = useCallback((index: number) => setActiveIndex(index), []);
+
+  const items: LightboxPhoto[] = useMemo(
+    () =>
+      images.map((src, index) => ({
+        id: `naomi-kids-${index}`,
+        brand: "naomi",
+        src,
+        caption: `${NAOMI_GALLERY_LABELS.ninos} — Look ${index + 1}`,
+        category: "ninos",
+      })),
+    [images]
+  );
 
   return (
     <section className="py-16 px-4 bg-ink/5">
@@ -15,64 +36,56 @@ export default function NaomiKidsSection({ images }: NaomiKidsSectionProps) {
         <Reveal>
           <div className="text-center mb-12">
             <p className="font-sans text-xs uppercase tracking-widest text-ink-soft font-semibold mb-4">
-              Para las más pequeñas
+              Colección infantil
             </p>
             <h2 className="font-serif text-3xl md:text-4xl text-ink mb-4">
-              Vestidos para niñas
+              Vestidos y trajes para niños
             </h2>
             <p className="font-sans text-sm text-ink-soft max-w-2xl mx-auto">
-              Diseños especiales para quinceañeras, primeras comuniones y eventos especiales. 
-              Cada vestido está pensado para que se sientan como princesas en su día importante.
+              Vestidos para niñas y trajes para niño, ideales para celebraciones, primeras comuniones y
+              eventos en familia. Te ayudamos a encontrar el look perfecto para los más pequeños.
             </p>
           </div>
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <ul className="flex flex-wrap justify-center gap-4 list-none p-0 m-0">
             {images.map((image, index) => (
-              <div
-                key={index}
-                className="relative min-h-[350px] rounded-lg overflow-hidden cursor-pointer group"
-                onClick={() => setActiveImageIndex(index)}
-              >
-                <PhotoOrFallback
-                  src={image}
-                  brand="naomi"
-                  alt={`Vestido para niña ${index + 1}`}
-                  className="w-full h-auto object-scale-down bg-paper/5 transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="text-white text-sm font-medium">Ver detalle</p>
-                </div>
-              </div>
+              <li key={image} className="w-[calc(50%-0.5rem)] sm:w-56 md:w-60">
+                <motion.button
+                  type="button"
+                  onClick={() => setActiveIndex(index)}
+                  className="group relative w-full aspect-[3/4] rounded-lg overflow-hidden text-left shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-naomi"
+                  whileHover={reduceMotion ? undefined : { y: -6 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <BlurFillImage
+                    src={image}
+                    brand="naomi"
+                    alt={`Look infantil ${index + 1}`}
+                    className="w-full h-full object-cover object-top"
+                  />
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    aria-hidden="true"
+                  />
+                  <span className="absolute bottom-3 left-3 right-3 flex items-center gap-1.5 text-white text-sm font-medium opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                    Ver detalle
+                    <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+                  </span>
+                </motion.button>
+              </li>
             ))}
-          </div>
+          </ul>
         </Reveal>
 
-        {/* Lightbox para ver imagen en grande */}
-        {activeImageIndex !== null && (
-          <div
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-            onClick={() => setActiveImageIndex(null)}
-          >
-            <button
-              className="absolute top-4 right-4 text-white hover:text-white/80 transition-colors"
-              onClick={() => setActiveImageIndex(null)}
-            >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            <img
-              src={images[activeImageIndex]}
-              alt={`Vestido para niña ${activeImageIndex + 1}`}
-              className="max-w-full max-h-[90vh] object-contain rounded-lg"
-              onClick={(e) => e.stopPropagation()}
-            />
-          </div>
-        )}
+        <GalleryLightbox
+          items={items}
+          activeIndex={activeIndex}
+          onClose={handleCloseLightbox}
+          onSelectIndex={handleSelectIndex}
+        />
       </div>
     </section>
-  )
+  );
 }

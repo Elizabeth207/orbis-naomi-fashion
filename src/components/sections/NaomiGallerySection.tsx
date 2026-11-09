@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Reveal from "../ui/Reveal";
 import FilterTabs from "../ui/FilterTabs";
 import GalleryPhotoFrame from "../ui/GalleryPhotoFrame";
@@ -20,23 +20,29 @@ export default function NaomiGallerySection() {
   const [activeCategory, setActiveCategory] = useState<NaomiGalleryCategory>("novias");
   const [activePhotoIndex, setActivePhotoIndex] = useState<number | null>(null);
 
-  const categoryPhotos = NAOMI_GALLERY_PHOTOS.filter((photo) => photo.category === activeCategory);
-  const activePhoto = activePhotoIndex !== null ? categoryPhotos[activePhotoIndex] : null;
+  const categoryPhotos = useMemo(
+    () => NAOMI_GALLERY_PHOTOS.filter((photo) => photo.category === activeCategory),
+    [activeCategory]
+  );
 
-  const handleCategoryChange = (value: string) => {
+  const lightboxIndex = useMemo(() => {
+    if (activePhotoIndex === null || categoryPhotos.length === 0) return null;
+    if (activePhotoIndex < 0 || activePhotoIndex >= categoryPhotos.length) return null;
+    return activePhotoIndex;
+  }, [activePhotoIndex, categoryPhotos.length]);
+
+  const handleCategoryChange = useCallback((value: string) => {
     setActiveCategory(value as NaomiGalleryCategory);
     setActivePhotoIndex(null);
-  };
+  }, []);
 
-  const handlePrev = () => {
-    if (activePhotoIndex === null) return;
-    setActivePhotoIndex((prev) => (prev === 0 ? categoryPhotos.length - 1 : (prev as number) - 1));
-  };
+  const handleCloseLightbox = useCallback(() => {
+    setActivePhotoIndex(null);
+  }, []);
 
-  const handleNext = () => {
-    if (activePhotoIndex === null) return;
-    setActivePhotoIndex((prev) => (prev === categoryPhotos.length - 1 ? 0 : (prev as number) + 1));
-  };
+  const handleSelectIndex = useCallback((index: number) => {
+    setActivePhotoIndex(index);
+  }, []);
 
   return (
     <section className="max-w-6xl mx-auto px-4 py-16 md:py-20">
@@ -53,7 +59,7 @@ export default function NaomiGallerySection() {
       </Reveal>
 
       <Reveal delay={0.1}>
-        <div className="flex justify-center mb-8 overflow-x-auto">
+        <div className="w-full max-w-full min-w-0 mb-8 px-0 sm:px-2">
           <FilterTabs
             options={FILTER_OPTIONS}
             activeValue={activeCategory}
@@ -81,10 +87,10 @@ export default function NaomiGallerySection() {
       )}
 
       <GalleryLightbox
-        photo={activePhoto}
-        onClose={() => setActivePhotoIndex(null)}
-        onNext={handleNext}
-        onPrev={handlePrev}
+        items={categoryPhotos}
+        activeIndex={lightboxIndex}
+        onClose={handleCloseLightbox}
+        onSelectIndex={handleSelectIndex}
       />
     </section>
   );

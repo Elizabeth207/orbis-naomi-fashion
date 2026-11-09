@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { GALLERY_PHOTOS } from "../data/gallery";
 import PageHeader from "../components/sections/PageHeader";
 import GalleryPhotoFrame from "../components/ui/GalleryPhotoFrame";
@@ -8,21 +8,15 @@ export default function GaleriaPage() {
   const [activePhotoIndex, setActivePhotoIndex] = useState<number | null>(null);
   const orbisPhotos = GALLERY_PHOTOS.filter((p) => p.brand === "orbis");
   const naomiPhotos = GALLERY_PHOTOS.filter((p) => p.brand === "naomi");
-  const activePhoto = activePhotoIndex !== null ? GALLERY_PHOTOS[activePhotoIndex] : null;
 
-  const handlePrev = () => {
-    if (activePhotoIndex === null) return;
-    setActivePhotoIndex((prev) =>
-      prev === 0 ? GALLERY_PHOTOS.length - 1 : (prev as number) - 1
-    );
-  };
+  const lightboxIndex = useMemo(() => {
+    if (activePhotoIndex === null || GALLERY_PHOTOS.length === 0) return null;
+    if (activePhotoIndex < 0 || activePhotoIndex >= GALLERY_PHOTOS.length) return null;
+    return activePhotoIndex;
+  }, [activePhotoIndex]);
 
-  const handleNext = () => {
-    if (activePhotoIndex === null) return;
-    setActivePhotoIndex((prev) =>
-      prev === GALLERY_PHOTOS.length - 1 ? 0 : (prev as number) + 1
-    );
-  };
+  const handleCloseLightbox = useCallback(() => setActivePhotoIndex(null), []);
+  const handleSelectIndex = useCallback((index: number) => setActivePhotoIndex(index), []);
 
   return (
     <div className="px-4">
@@ -71,10 +65,10 @@ export default function GaleriaPage() {
       </div>
 
       <GalleryLightbox
-        photo={activePhoto}
-        onClose={() => setActivePhotoIndex(null)}
-        onNext={handleNext}
-        onPrev={handlePrev}
+        items={GALLERY_PHOTOS}
+        activeIndex={lightboxIndex}
+        onClose={handleCloseLightbox}
+        onSelectIndex={handleSelectIndex}
       />
     </div>
   );

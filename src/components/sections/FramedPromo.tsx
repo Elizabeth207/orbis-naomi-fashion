@@ -1,4 +1,6 @@
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { useInView } from "../../hooks/useInView";
 import type { Promotion } from "../../data/promotions";
 import type { Style } from "../../data/styles";
 import PhotoOrFallback from "../ui/PhotoOrFallback";
@@ -13,6 +15,16 @@ interface FramedPromoProps {
 }
 
 export default function FramedPromo({ promotion, photoLeft, photoRight, onPhotoClick }: FramedPromoProps) {
+  const { ref: promoVideoWrapRef, inView: promoVideoInView } = useInView<HTMLDivElement>("200px");
+  const promoVideoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = promoVideoRef.current;
+    if (!video || !promoVideoInView) return;
+    video.src = "/video/video.mp4";
+    video.play().catch(() => {});
+  }, [promoVideoInView]);
+
   const isOrbis = promotion.brand === "orbis";
   const eyebrowColor = isOrbis ? "text-orbis-dark" : "text-naomi-dark";
   const whatsappMessage = `Hola, quisiera más información sobre: ${promotion.title}`;
@@ -49,14 +61,16 @@ export default function FramedPromo({ promotion, photoLeft, photoRight, onPhotoC
         {renderPhoto(photoLeft)}
 
         <div className="flex flex-col items-center justify-center p-10 md:p-12">
-          <div className="w-full max-w-[20rem] aspect-[9/16] overflow-hidden mb-6 shadow-md bg-ink">
+          <div
+            ref={promoVideoWrapRef}
+            className="w-full max-w-[20rem] aspect-[9/16] overflow-hidden mb-6 shadow-md bg-ink"
+          >
             <video
-              src="/video/video.mp4"
-              autoPlay
+              ref={promoVideoRef}
               muted
               loop
               playsInline
-              preload="metadata"
+              preload="none"
               aria-label={`Video promocional: ${promotion.title}`}
               className="w-full h-full object-contain"
             />

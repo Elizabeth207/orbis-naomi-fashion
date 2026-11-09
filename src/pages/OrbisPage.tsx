@@ -1,13 +1,16 @@
-import { useState } from 'react'
+import { Suspense, lazy, useCallback, useState } from 'react'
 import type { Style } from '../data/styles'
 import { STYLES_ORBIS } from '../data/styles'
 import BrandHero from '../components/sections/BrandHero'
 import BrandStory from '../components/sections/BrandStory'
+import OrbisMarquee from '../components/sections/OrbisMarquee'
+import OrbisFamilySection from '../components/sections/OrbisFamilySection'
 import StyleGrid from '../components/sections/StyleGrid'
-import StyleDetailModal from '../components/ui/StyleDetailModal'
+const StyleDetailModal = lazy(() => import('../components/ui/StyleDetailModal'))
 
 export default function OrbisPage() {
   const [selectedStyle, setSelectedStyle] = useState<Style | null>(null)
+  const handleCloseStyleModal = useCallback(() => setSelectedStyle(null), [])
 
   return (
     <>
@@ -17,24 +20,31 @@ export default function OrbisPage() {
         title="Orbis II"
         description="Venta de ropa casual para damas y caballeros. Prendas del día a día con estilo urbano y buena calidad, para toda ocasión."
         imageSrc="/images/orbis/hero.jpg"
+        enableParallax
       />
+      <OrbisMarquee />
       <BrandStory
         title="Sobre Orbis II"
+        showAudienceTags
         paragraphs={[
           "Orbis II nace para vestir el día a día de Pichanaki con ventas de prendas casuales de calidad, pensadas para damas y caballeros.",
           "Aquí encontrarás desde básicos de uso diario hasta piezas de abrigo para el clima de la sierra, siempre con buena caída y precios justos."
         ]}
       />
+      <OrbisFamilySection />
       <StyleGrid
         brand="orbis"
         label="Orbis II — Estilos destacados"
         styles={STYLES_ORBIS}
         onStyleClick={setSelectedStyle}
       />
-      <StyleDetailModal
-        style={selectedStyle}
-        onClose={() => setSelectedStyle(null)}
-      />
+      <Suspense fallback={null}>
+        <StyleDetailModal
+          style={selectedStyle}
+          onClose={handleCloseStyleModal}
+          onSelectStyle={setSelectedStyle}
+        />
+      </Suspense>
     </>
   )
 }

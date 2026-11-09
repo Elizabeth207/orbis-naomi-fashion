@@ -12,6 +12,8 @@ export default function Hero() {
         title={['Orbis II']}
         description="Venta de ropa casual para damas y caballeros, con estilo urbano y elegante, de excelente calidad."
         videoSrc="/video/orbis-hero.mp4"
+        posterSrc="/images/orbis/hero.jpg"
+        priorityPoster
         linkTo="/orbis-ii"
       />
 
@@ -22,6 +24,7 @@ export default function Hero() {
         title={['Novias', 'Naomi']}
         description="VENTA & ALQUILER de vestidos para novias, quinceañeras, bautizos, promociones y graduaciones. También ofrecemos ternos para adultos y niños, calzado de vestir para damas y caballeros, además de accesorios en general."
         videoSrc="/video/naomi-hero.mp4"
+        posterSrc="/images/naomi/hero.jpg"
         linkTo="/novias-naomi"
       />
 

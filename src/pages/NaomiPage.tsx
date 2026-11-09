@@ -1,14 +1,15 @@
-import { useState } from 'react'
+import { Suspense, lazy, useCallback, useState } from 'react'
 import type { Style } from '../data/styles'
 import { STYLES_NAOMI } from '../data/styles'
 import BrandHero from '../components/sections/BrandHero'
 import BrandStory from '../components/sections/BrandStory'
 import NaomiOfferings from '../components/sections/NaomiOfferings'
+import NaomiHowItWorks from '../components/sections/NaomiHowItWorks'
 import StyleGrid from '../components/sections/StyleGrid'
 import NaomiGallerySection from '../components/sections/NaomiGallerySection'
 import NaomiVideoShowcase from '../components/sections/NaomiVideoShowcase'
 import NaomiKidsSection from '../components/sections/NaomiKidsSection'
-import StyleDetailModal from '../components/ui/StyleDetailModal'
+const StyleDetailModal = lazy(() => import('../components/ui/StyleDetailModal'))
 
 const NAOMI_VIDEOS = [
   '/video/nahomi1.mp4',
@@ -28,6 +29,7 @@ const NAOMI_KIDS_IMAGES = [
 
 export default function NaomiPage() {
   const [selectedStyle, setSelectedStyle] = useState<Style | null>(null)
+  const handleCloseStyleModal = useCallback(() => setSelectedStyle(null), [])
 
   return (
     <>
@@ -39,6 +41,7 @@ export default function NaomiPage() {
         imageSrc="/images/naomi/hero.jpg"
       />
       <NaomiOfferings />
+      <NaomiHowItWorks />
       <NaomiVideoShowcase videos={NAOMI_VIDEOS} />
       <BrandStory
         title="Sobre Novias Naomi"
@@ -55,10 +58,13 @@ export default function NaomiPage() {
       />
       <NaomiKidsSection images={NAOMI_KIDS_IMAGES} />
       <NaomiGallerySection />
-      <StyleDetailModal
-        style={selectedStyle}
-        onClose={() => setSelectedStyle(null)}
-      />
+      <Suspense fallback={null}>
+        <StyleDetailModal
+          style={selectedStyle}
+          onClose={handleCloseStyleModal}
+          onSelectStyle={setSelectedStyle}
+        />
+      </Suspense>
     </>
   )
 }

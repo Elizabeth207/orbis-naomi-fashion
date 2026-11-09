@@ -5,6 +5,7 @@ interface PhotoOrFallbackProps {
   brand: "orbis" | "naomi";
   className?: string;
   alt: string;
+  loading?: "lazy" | "eager";
 }
 
 export default function PhotoOrFallback({
@@ -12,6 +13,7 @@ export default function PhotoOrFallback({
   brand,
   className = "",
   alt,
+  loading = "lazy",
 }: PhotoOrFallbackProps) {
   const [imgError, setImgError] = useState(false);
   const isOrbis = brand === "orbis";
@@ -23,7 +25,13 @@ export default function PhotoOrFallback({
         <img
           src={src}
           alt={alt}
+          loading={loading}
+          decoding="async"
           onError={() => setImgError(true)}
+          onLoad={(e) => {
+            const img = e.currentTarget;
+            if (img.naturalWidth === 0) setImgError(true);
+          }}
           className="w-full h-full object-cover"
         />
       ) : (

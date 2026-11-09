@@ -9,10 +9,21 @@ interface HeroSideProps {
   title: string[]
   description: string
   videoSrc: string
+  posterSrc: string
+  priorityPoster?: boolean
   linkTo: string
 }
 
-export default function HeroSide({ side, eyebrow, title, description, videoSrc, linkTo }: HeroSideProps) {
+export default function HeroSide({
+  side,
+  eyebrow,
+  title,
+  description,
+  videoSrc,
+  posterSrc,
+  priorityPoster = false,
+  linkTo,
+}: HeroSideProps) {
   const isOrbis = side === 'orbis'
   const xDirection = isOrbis ? -20 : 20
 
@@ -23,7 +34,12 @@ export default function HeroSide({ side, eyebrow, title, description, videoSrc, 
       }`}
     >
       {/* Video background */}
-      <VideoBackground brand={side} videoSrc={videoSrc} />
+      <VideoBackground
+        brand={side}
+        videoSrc={videoSrc}
+        posterSrc={posterSrc}
+        priorityPoster={priorityPoster}
+      />
 
       {/* Vignette overlay - Sombra inferior un poco más oscura para leer el texto fácilmente */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/20 via-black/10 to-black/70" />

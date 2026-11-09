@@ -23,6 +23,12 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body {
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 .font-serif-italic {
@@ -59,4 +65,18 @@ html {
     rgba(255, 255, 255, 0.03) 10px,
     rgba(255, 255, 255, 0.03) 20px
   );
+}
+
+@keyframes orbis-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.orbis-marquee-animate {
+  animation: orbis-marquee 28s linear infinite;
+  width: max-content;
 }

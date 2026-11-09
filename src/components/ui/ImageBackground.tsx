@@ -4,9 +4,15 @@ interface ImageBackgroundProps {
   brand: 'orbis' | 'naomi'
   imageSrc: string
   className?: string
+  priority?: boolean
 }
 
-export default function ImageBackground({ brand, imageSrc, className = '' }: ImageBackgroundProps) {
+export default function ImageBackground({
+  brand,
+  imageSrc,
+  className = '',
+  priority = false,
+}: ImageBackgroundProps) {
   const [imgError, setImgError] = useState(false)
 
   const isOrbis = brand === 'orbis'
@@ -19,6 +25,9 @@ export default function ImageBackground({ brand, imageSrc, className = '' }: Ima
         <img
           src={imageSrc}
           alt=""
+          decoding="async"
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : 'auto'}
           className={`absolute inset-0 w-full h-full object-cover object-top -z-20 animate-kenburns ${className}`}
           onError={() => setImgError(true)}
         />

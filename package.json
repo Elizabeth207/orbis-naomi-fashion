@@ -7,11 +7,13 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "analyze:build": "npm run build && node -e \"const fs=require('fs');const p='dist/assets';fs.readdirSync(p).forEach(f=>{const s=fs.statSync(p+'/'+f).size;console.log((s/1024).toFixed(1)+' KB',f)})\""
   },
   "dependencies": {
     "clsx": "^2.1.1",
     "framer-motion": "^12.42.2",
+    "lucide-react": "^1.70.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-router-dom": "^7.18.1"

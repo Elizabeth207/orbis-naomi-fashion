@@ -1,22 +1,25 @@
-import { useState } from 'react'
+import { Suspense, lazy, useCallback, useState } from 'react'
 import type { Style } from '../data/styles'
 import { STYLES_ORBIS, STYLES_NAOMI } from '../data/styles'
 import { PROMOTIONS } from '../data/promotions'
 import Hero from '../components/sections/Hero'
 import Intro from '../components/sections/Intro'
+import WhyChooseUs from '../components/sections/WhyChooseUs'
 import CollectionFeature from '../components/sections/CollectionFeature'
 import FramedPromo from '../components/sections/FramedPromo'
-import StyleDetailModal from '../components/ui/StyleDetailModal'
+const StyleDetailModal = lazy(() => import('../components/ui/StyleDetailModal'))
 import StoresSection from '../components/sections/StoresSection'
 import WhatsAppCTA from '../components/sections/WhatsAppCTA'
 
 export default function HomePage() {
   const [selectedStyle, setSelectedStyle] = useState<Style | null>(null)
+  const handleCloseStyleModal = useCallback(() => setSelectedStyle(null), [])
 
   return (
     <>
       <Hero />
       <Intro />
+      <WhyChooseUs />
 
       <div className="px-4 md:px-8 max-w-6xl mx-auto flex flex-col gap-6 mb-16">
         <CollectionFeature
@@ -52,10 +55,13 @@ export default function HomePage() {
       <StoresSection />
       <WhatsAppCTA />
 
-      <StyleDetailModal
-        style={selectedStyle}
-        onClose={() => setSelectedStyle(null)}
-      />
+      <Suspense fallback={null}>
+        <StyleDetailModal
+          style={selectedStyle}
+          onClose={handleCloseStyleModal}
+          onSelectStyle={setSelectedStyle}
+        />
+      </Suspense>
     </>
   )
 }

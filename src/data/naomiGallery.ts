@@ -37,7 +37,16 @@ function buildPhoto(category: NaomiGalleryCategory, file: string, index: number)
 // Nombres reales de archivo tal como están hoy en cada carpeta de public/images/naomi/.
 // TODO: si Elizabeth sube, quita o renombra fotos en estas carpetas, actualizar estas listas
 // para que coincidan exactamente con los archivos presentes en disco.
-const NOVIAS_FILES = ["novia1.jpg", "novia2.jpg", "novia3.jpg", "novia4.jpg", "novia5.jpg", "novia6.jpg"];
+const NOVIAS_FILES = [
+  "novia1.jpg",
+  "novia2.jpg",
+  "novia3.jpg",
+  "novia4.jpg",
+  "novia5.jpg",
+  "novia6.jpg",
+  "WhatsApp Image 2026-11-09 at 10.22.24.jpeg",
+  "WhatsApp Image 2026-11-09 at 10.22.45.jpeg",
+];
 
 const QUINCEANERAS_FILES = [
   "img1.jpeg",
@@ -70,6 +79,12 @@ const NINOS_FILES = [
   "niño6.jpg",
   "niño7.jpg",
   "niño8.jpg",
+  "niña9.jpg",
+  "niña10.jpg",
+  "niña11.jpg",
+  "niña12.jpg",
+  "niña13.jpg",
+  "niña14.jpg",
 ];
 
 export const NAOMI_GALLERY_PHOTOS: NaomiGalleryPhoto[] = [

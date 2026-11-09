@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import Reveal from '../ui/Reveal'
-import { useInView } from '../../hooks/useInView'
 
 interface NaomiVideoShowcaseProps {
   videos: string[]
@@ -8,19 +7,6 @@ interface NaomiVideoShowcaseProps {
 
 export default function NaomiVideoShowcase({ videos }: NaomiVideoShowcaseProps) {
   const [activeVideo, setActiveVideo] = useState(0)
-  const { ref: mainRef, inView: mainInView } = useInView<HTMLDivElement>('160px')
-  const mainVideoRef = useRef<HTMLVideoElement>(null)
-
-  useEffect(() => {
-    const video = mainVideoRef.current
-    if (!video || !mainInView) return
-    const src = videos[activeVideo]
-    if (video.getAttribute('data-src') !== src) {
-      video.src = src
-      video.setAttribute('data-src', src)
-    }
-    video.play().catch(() => {})
-  }, [activeVideo, mainInView, videos])
 
   return (
     <section className="py-16 px-4">
@@ -38,44 +24,54 @@ export default function NaomiVideoShowcase({ videos }: NaomiVideoShowcaseProps) 
 
         <Reveal delay={0.1}>
           <div className="relative">
-            <div
-              ref={mainRef}
-              className="aspect-video bg-ink/5 rounded-lg overflow-hidden mb-6"
-            >
+            {/* Video principal */}
+            <div className="aspect-video bg-ink/5 rounded-lg overflow-hidden mb-6">
               <video
-                ref={mainVideoRef}
+                key={activeVideo}
                 className="w-full h-full object-contain"
+                autoPlay
                 muted
                 loop
                 playsInline
                 controls
-                preload="none"
-              />
+              >
+                <source src={videos[activeVideo]} type="video/mp4" />
+              </video>
             </div>
 
+            {/* Thumbnails de videos */}
             <div className="grid grid-cols-3 gap-4">
               {videos.map((video, index) => (
                 <button
-                  key={video}
-                  type="button"
+                  key={index}
                   onClick={() => setActiveVideo(index)}
                   className={`relative aspect-video rounded-lg overflow-hidden border-2 transition-all ${
                     activeVideo === index
                       ? 'border-naomi ring-2 ring-naomi/30'
                       : 'border-line hover:border-ink/30'
-                  }`}
+                  }`} 
                 >
-                  <div
-                    className="w-full h-full bg-ink/10"
-                    aria-hidden="true"
-                  />
+                  <video
+                    className="w-full h-full object-contain"
+                    muted
+                    onMouseEnter={(e) => {
+                      const vid = e.target as HTMLVideoElement
+                      vid.play().catch(() => {})
+                    }}
+                    onMouseLeave={(e) => {
+                      const vid = e.target as HTMLVideoElement
+                      vid.pause()
+                      vid.currentTime = 0
+                    }}
+                  >
+                    <source src={video} type="video/mp4" />
+                  </video>
                   <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
                     <div className="w-10 h-10 bg-white/90 rounded-full flex items-center justify-center">
                       <svg
                         className="w-4 h-4 text-ink ml-0.5"
                         fill="currentColor"
                         viewBox="0 0 24 24"
-                        aria-hidden="true"
                       >
                         <path d="M8 5v14l11-7z" />
                       </svg>

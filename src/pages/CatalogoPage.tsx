@@ -1,11 +1,11 @@
-import { Suspense, lazy, useState } from 'react'
+import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { Style } from '../data/styles'
 import { STYLES_ORBIS, STYLES_NAOMI } from '../data/styles'
 import PageHeader from '../components/sections/PageHeader'
 import FilterTabs from '../components/ui/FilterTabs'
 import StyleMosaic from '../components/sections/StyleMosaic'
-const StyleDetailModal = lazy(() => import('../components/ui/StyleDetailModal'))
+import StyleDetailModal from '../components/ui/StyleDetailModal'
 
 function interleaveStyles(a: Style[], b: Style[]): Style[] {
   const result: Style[] = []
@@ -63,13 +63,11 @@ export default function CatalogoPage() {
         </motion.div>
       </AnimatePresence>
 
-      <Suspense fallback={null}>
-        <StyleDetailModal
-          style={selectedStyle}
-          onClose={() => setSelectedStyle(null)}
-          onSelectStyle={setSelectedStyle}
-        />
-      </Suspense>
+      <StyleDetailModal
+        style={selectedStyle}
+        onClose={() => setSelectedStyle(null)}
+        onSelectStyle={setSelectedStyle}
+      />
     </div>
   )
 }

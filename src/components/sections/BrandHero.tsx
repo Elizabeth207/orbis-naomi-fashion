@@ -51,7 +51,7 @@ export default function BrandHero({
         className="absolute inset-0 -z-20"
         style={parallaxOn ? { y: imageY } : undefined}
       >
-        <ImageBackground brand={brand} imageSrc={imageSrc} className="scale-110" priority />
+        <ImageBackground brand={brand} imageSrc={imageSrc} className="scale-110" />
       </motion.div>
 
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/20 via-black/10 to-black/70" />

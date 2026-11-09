@@ -1,4 +1,4 @@
-import { Suspense, lazy, useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import type { Style } from '../data/styles'
 import { STYLES_NAOMI } from '../data/styles'
 import BrandHero from '../components/sections/BrandHero'
@@ -9,7 +9,7 @@ import StyleGrid from '../components/sections/StyleGrid'
 import NaomiGallerySection from '../components/sections/NaomiGallerySection'
 import NaomiVideoShowcase from '../components/sections/NaomiVideoShowcase'
 import NaomiKidsSection from '../components/sections/NaomiKidsSection'
-const StyleDetailModal = lazy(() => import('../components/ui/StyleDetailModal'))
+import StyleDetailModal from '../components/ui/StyleDetailModal'
 
 const NAOMI_VIDEOS = [
   '/video/nahomi1.mp4',
@@ -58,13 +58,11 @@ export default function NaomiPage() {
       />
       <NaomiKidsSection images={NAOMI_KIDS_IMAGES} />
       <NaomiGallerySection />
-      <Suspense fallback={null}>
-        <StyleDetailModal
-          style={selectedStyle}
-          onClose={handleCloseStyleModal}
-          onSelectStyle={setSelectedStyle}
-        />
-      </Suspense>
+      <StyleDetailModal
+        style={selectedStyle}
+        onClose={handleCloseStyleModal}
+        onSelectStyle={setSelectedStyle}
+      />
     </>
   )
 }

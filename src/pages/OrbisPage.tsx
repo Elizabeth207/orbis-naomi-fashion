@@ -1,4 +1,4 @@
-import { Suspense, lazy, useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import type { Style } from '../data/styles'
 import { STYLES_ORBIS } from '../data/styles'
 import BrandHero from '../components/sections/BrandHero'
@@ -6,7 +6,7 @@ import BrandStory from '../components/sections/BrandStory'
 import OrbisMarquee from '../components/sections/OrbisMarquee'
 import OrbisFamilySection from '../components/sections/OrbisFamilySection'
 import StyleGrid from '../components/sections/StyleGrid'
-const StyleDetailModal = lazy(() => import('../components/ui/StyleDetailModal'))
+import StyleDetailModal from '../components/ui/StyleDetailModal'
 
 export default function OrbisPage() {
   const [selectedStyle, setSelectedStyle] = useState<Style | null>(null)
@@ -38,13 +38,11 @@ export default function OrbisPage() {
         styles={STYLES_ORBIS}
         onStyleClick={setSelectedStyle}
       />
-      <Suspense fallback={null}>
-        <StyleDetailModal
-          style={selectedStyle}
-          onClose={handleCloseStyleModal}
-          onSelectStyle={setSelectedStyle}
-        />
-      </Suspense>
+      <StyleDetailModal
+        style={selectedStyle}
+        onClose={handleCloseStyleModal}
+        onSelectStyle={setSelectedStyle}
+      />
     </>
   )
 }
